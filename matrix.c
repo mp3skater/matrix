@@ -11,9 +11,12 @@
 
 #include "matrix.h"
 
-matrix_t create_random_matrix(int row, int col)
+/*
+ * Creates a new matrix with the given row- and col-size.
+ */
+matrix_t create_matrix(int row, int col)
 {
-  // Allocate the memory for a new matrix
+  // Allocate memory for a new matrix
   matrix_t *mat = malloc(sizeof(matrix_t) + sizeof(val_t *) * row);
 
   if(mat == NULL) {
@@ -21,15 +24,40 @@ matrix_t create_random_matrix(int row, int col)
     return NULL;
   }
 
-  srand(time(NULL));
+  mat->i = row;
+  mat->j = col;
+  
+  // Allocate memory for the flexible array member
+  for (int i = 0; i < rows; i++) {
+    mat->m[i] = malloc(sizeof(val_t) * cols);
+    if(mat->m[i] == NULL) {
+      // Handle allocation failure
+      // Free previously allocated memory
+      for (int j = 0; j < i; j++) {
+        free(mat->m[j]);
+      }
+      free(mat);
+      return NULL;
+    }
+  }
+}
 
+/*
+ * Fills the given matrix_t with random numbers up to n.
+ */
+int fill_random_matrix(int n, matrix_t m)
+{
+  // Random variable
+  val_t random;
+  srand(time(NULL));
+  
   // All elements of the matrix filled and printed
-  val_t r;
+  val_t random;
   for(int i = 0; i<m.i; i++) {
     for(int j = 0; j<m.j; j++) {
-      r.val = rand()%(n+1);
-      m.m[i][j] = r;
-      printf("%lf ", r.val);
+      random.val = rand()%(n+1);
+      m.m[i][j] = random;
+      printf("%lf ", random.val);
     }
     printf("\n");
   }
@@ -37,6 +65,9 @@ matrix_t create_random_matrix(int row, int col)
   return 0;
 }
 
+/*
+ * Adds two equally sized matrixes together.
+ */
 int madd(matrix_t m1, matrix_t m2, matrix_t* ans_p)
 {
   // Assert both matrixes have the same size
