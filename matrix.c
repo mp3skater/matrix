@@ -11,9 +11,6 @@
 
 #include "matrix.h"
 
-/*
- * Creates a new matrix with the given row- and col-size.
- */
 matrix_t create_matrix(int row, int col)
 {
   // Allocate memory for a new matrix
@@ -42,14 +39,11 @@ matrix_t create_matrix(int row, int col)
   }
 }
 
-/*
- * Fills the given matrix_t with random numbers up to n.
- */
 int fill_random_matrix(int n, matrix_t m)
 {
+  srand(time(NULL));
   // Random variable
   val_t random;
-  srand(time(NULL));
   
   // All elements of the matrix filled and printed
   val_t random;
@@ -65,25 +59,20 @@ int fill_random_matrix(int n, matrix_t m)
   return 0;
 }
 
-/*
- * Adds two equally sized matrixes together.
- */
 int madd(matrix_t m1, matrix_t m2, matrix_t* ans_p)
 {
   // Assert both matrixes have the same size
   if(m1.i != m2.i || m1.j != m2.j) {
     printf("The matrixes %p and %p don't have the same size, Addition not possible", &m1, &m2);
-    return 1;
+    return -1;
   }
 
-  // Compute the operation for all elements of the matrixes to the p
+  // Compute the operation for all elements of the matrixes to the answer-matrix
   for(int i = 0; i<m1.i; i++) {
     for(int j = 0; j<m1.j; j++) {
       (*ans_p).m[i][j].val = m1.m[i][j].val + m2.m[i][j].val;
     }
   }
-
-  printf("done...");
 
   return 0;
 }
