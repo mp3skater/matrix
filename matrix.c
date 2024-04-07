@@ -76,3 +76,53 @@ int madd(matrix_t m1, matrix_t m2, matrix_t* ans_p)
 
   return 0;
 }
+
+int msub(matrix_t m1, matrix_t m2, matrix_t* ans_p)
+{
+  // Assert both matrixes have the same size
+  if(m1.i != m2.i || m1.j != m2.j) {
+    printf("The matrixes %p and %p don't have the same size, Subtraction not possible", &m1, &m2);
+    return -1;
+  }
+
+  // Compute the operation for all elements of the matrixes to the answer-matrix
+  for(int i = 0; i<m1.i; i++) {
+    for(int j = 0; j<m1.j; j++) {
+      (*ans_p).m[i][j].val = m1.m[i][j].val - m2.m[i][j].val;
+    }
+  }
+
+  return 0;
+}
+
+
+int mskal(matrix_t m1, val_t skal, matrix_t* ans_p)
+{
+  // Compute the operation for all elements of the matrixes to the answer-matrix
+  for(int i = 0; i<m1.i; i++) {
+    for(int j = 0; j<m1.j; j++) {
+      (*ans_p).m[i][j].val = m1.m[i][j].val * skal.val;
+    }
+  }
+
+  return 0;
+}
+
+
+int mprod(matrix_t m1, matrix_t m2, matrix_t* ans_p)
+{
+  // Assert both matrixes have the same size
+  if(m1.i != m2.i || m1.j != m2.j) {
+    printf("The matrixes %p and %p don't have the same size, Multiplication not possible", &m1, &m2);
+    return -1;
+  }
+
+  // Compute the operation for all elements of the matrixes to the answer-matrix
+  for(int i = 0; i<m1.i; i++) {
+    for(int j = 0; j<m1.j; j++) {
+      (*ans_p).m[i][j].val = m1.m[i][j].val * m2.m[i][j].val;
+    }
+  }
+
+  return 0;
+}

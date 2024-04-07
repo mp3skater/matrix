@@ -30,22 +30,37 @@ typedef
   } matrix_t;
 
 /*
+ * Allocates the storage (initializes) and returns a new matrix with the size of i * j.
+ *
+ * Parameter:
+ * 1: count of rows (y)
+ * 2: count of columns (x)
+ */
+matrix_t create_matrix(int, int);
+
+/*
  * Fills a matrix with random values from 0 to <n>
+ *
  * Parameter:
  * 1: maximal size of matrix-values
  * 2: pointer to the matrix that gets filled
+ *
+ * Return:
+ * 0: Operation successful
  */
 int fill_random_matrix(int, matrix_t);
 
 /*
- * Return value:
- * 0:  Operation successful
- * -1: Size uncompatible
+ * Group of operation-methods:
  *
  * Parameter: 
- * m1: First matrix
- * m2: Second matrix or skal-value
- * ans_p: Pointer to the answer-matrix
+ * 1: First matrix
+ * 2: Second matrix or skal-value
+ * 3: Pointer to the answer-matrix
+ *
+ * Return:
+ * 0:  Operation successful
+ * -1: Size uncompatible
  */
 // Adds two matrixes together if they are the same size, else the answer-matrix will be NULL.
 int madd(matrix_t, matrix_t, matrix_t*);
