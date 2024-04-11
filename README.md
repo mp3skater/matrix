@@ -1,36 +1,32 @@
 <h1 align="center">
-  In/Decoder
+  Matrix-calculation module
 </h1>
 
-> A simple binary in/decoder that uses parity-bits to check for errors.
+> A simple matrix-calculation module for your matrix-calculations. [whats a matrix?](https://en.wikipedia.org/wiki/Matrix)
 
 ## Features
-
---> Info: This project is an interesting school-exercise which implements a custom matrix-module and a simple test-class :)
+--> Info: This project is an interesting school-exercise which implements a custom matrix-module with certain funktions and a simple test-class :)
 
 **Elements:**
-- 
+- The matrix-module with header
+- A makefile
+- A test-module
 
 **Funktions:**
 - madd (adds two matrixes together)
 - msub (subtracts two matrixes)
-- mskal (scale a matrix(multiplicate every element with a double
-- Incoder (inserts a parity-bit after every byte) [whats a matrix?](https://en.wikipedia.org/wiki/Matrix)
-- "Fehlerteufel" (inserts a given number of errors in the generated/incoded file)
-- Decoder (returnes a pointer to the decoded file if no mistakes were found, otherwise NULL)
-
-- Test programs for every module and one for the intire process
-- Makefile for all programs 
+- mskal (scale a matrix(multiplicate every element with a val_t which is a double))
+- mprod (multiplicate two matrixes)
 
 **In Future:**
-- Idk, I'd be already happy if it worked...
+- Idk, I'd be already happy if it worked (2)...
 
 ---
 
 ## How to use
 
 To compile this program I'd recommend to use a linux distro with [gcc](https://www.gnu.org/software/gcc/), but you can also use [MinGW](https://www.mingw-w64.org/) for windows or an IDE like Vim/Emacs or VCS for Windows and MacOS.
-The rules to compile the different Test-programs are in the makefile.
+The rule to compile the test-program is in the makefile.
 
 ## License
 
