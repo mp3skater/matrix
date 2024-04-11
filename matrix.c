@@ -1,7 +1,6 @@
 /*
  * Module: matrix.c
  * Author: mp3skater
- * Version: 0.1
  * License: MIT License
  */
 
@@ -11,22 +10,22 @@
 
 #include "matrix.h"
 
-matrix_t create_matrix(int row, int col)
+int create_matrix(matrix_t* mat, int row, int col)
 {
   // Allocate memory for a new matrix
-  matrix_t *mat = malloc(sizeof(matrix_t) + sizeof(val_t *) * row);
+  mat = malloc(sizeof(matrix_t) + sizeof(val_t *) * row);
 
   if(mat == NULL) {
     // Handle allocation failure
-    return NULL;
+    return 1;
   }
 
   mat->i = row;
   mat->j = col;
   
   // Allocate memory for the flexible array member
-  for (int i = 0; i < rows; i++) {
-    mat->m[i] = malloc(sizeof(val_t) * cols);
+  for (int i = 0; i < row; i++) {
+    mat->m[i] = malloc(sizeof(val_t) * col);
     if(mat->m[i] == NULL) {
       // Handle allocation failure
       // Free previously allocated memory
@@ -34,9 +33,11 @@ matrix_t create_matrix(int row, int col)
         free(mat->m[j]);
       }
       free(mat);
-      return NULL;
+      return 1;
     }
   }
+
+  return 0;
 }
 
 int fill_random_matrix(int n, matrix_t m)
@@ -46,7 +47,6 @@ int fill_random_matrix(int n, matrix_t m)
   val_t random;
   
   // All elements of the matrix filled and printed
-  val_t random;
   for(int i = 0; i<m.i; i++) {
     for(int j = 0; j<m.j; j++) {
       random.val = rand()%(n+1);

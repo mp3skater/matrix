@@ -33,10 +33,15 @@ typedef
  * Allocates the storage (initializes) and returns a new matrix with the size of i * j.
  *
  * Parameter:
- * 1: count of rows (y)
- * 2: count of columns (x)
+ * 1: pointer to the matrix that will be created
+ * 2: count of rows (y)
+ * 3: count of columns (x)
+ *
+ * Return:
+ * 0: Creation successful
+ * 1: Error happens
  */
-matrix_t create_matrix(int, int);
+int create_matrix(matrix_t*, int, int);
 
 /*
  * Fills a matrix with random values from 0 to <n>
@@ -54,9 +59,9 @@ int fill_random_matrix(int, matrix_t);
  * Group of operation-methods:
  *
  * Parameter: 
- * 1: First matrix
- * 2: Second matrix or skal-value
- * 3: Pointer to the answer-matrix
+ * 1: first matrix
+ * 2: second matrix or skal-value
+ * 3: pointer to the answer-matrix
  *
  * Return:
  * 0:  Operation successful
@@ -69,7 +74,7 @@ int madd(matrix_t, matrix_t, matrix_t*);
 int msub(matrix_t, matrix_t, matrix_t*);
 
 // Multiplies all members of the matrix by the given value of the second parameter.
-int mskal(matrix_t, double, matrix_t*);
+int mskal(matrix_t, val_t, matrix_t*);
 
 // Multiply two matrixes, if they are not of the same size the answer-matrix will be NULL.
 int mprod(matrix_t, matrix_t, matrix_t*);

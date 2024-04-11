@@ -11,10 +11,12 @@
  */
 int main(void)
 {
-  val_t m1[3][4];
-  matrix_t matrix_1 = (matrix_t) {3, 4, m1};
-  val_t m2[3][4];
-  matrix_t matrix_2 = (matrix_t) {3, 4, m2};
+  matrix_t m = create_matrix(3, 4);
+  fill_random_matrix(10, m);
+
+  madd(m, m, &m);
+  msub(m, m, &m);
+  mprod(m, m, &m);
 
   printf("finish......");
 
